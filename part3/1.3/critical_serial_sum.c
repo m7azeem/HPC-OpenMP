@@ -12,7 +12,7 @@ int main(){
 	double start = omp_get_wtime();
 	generate_random(x, SIZE);
 	
-	#pragma omp parallel
+	//#pragma omp parallel
 	serial_sum(x, SIZE);
 
 	double end = omp_get_wtime();
@@ -32,11 +32,10 @@ void generate_random(double *input, size_t size)
 double serial_sum(double *x, size_t size)
 {
   double sum_val = 0.0;
-  //#pragma omp parallel
+  #pragma omp parallel for
   for (size_t i = 0; i < size; i++) {
     #pragma omp critical
     sum_val += x[i];
-	//printf("%Lf \n ",sum_val);
   }
 
   return sum_val;
