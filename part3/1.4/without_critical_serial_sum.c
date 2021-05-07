@@ -40,7 +40,7 @@ double serial_sum(size_t size)
 	{
 		int thread_id = omp_get_thread_num();
 			
-
+		#pragma omp parallel for
 		for (size_t i = 0; i < size; i++) {
 			sum[thread_id] += x[i];
 		}
